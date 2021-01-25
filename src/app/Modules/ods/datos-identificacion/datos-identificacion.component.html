@@ -12,11 +12,10 @@
       <div class="col-12 row mb-3">
         <label for="tipodedocumento" class="col-4 label-form">Tipo de Documento<span class="text-danger">
             *</span></label>
-        <select id="tipodedocumento" class="form-control form-select tamano input-peque py-0">
-          <option> --selecciona-- </option>
-          <option>Cedula de Ciudadania</option>
-          <option>NIT</option>
-        </select>
+            <select [(ngModel)]="campos.documentoSeleccionado.valor" id="tipodedocumento" class="form-control form-select tamano input-peque py-0">
+            <option selected disabled value=""> --selecciona-- </option>
+            <option *ngFor="let d of listadoDeDocumentos" value="{{d.Code}}">{{d.Description}}</option>
+          </select>
       </div>
     </div>
     <div class="col-md-6">
@@ -43,7 +42,7 @@
         <label for="departamento" class="label-form">Departamento<span class="text-danger"> *</span></label>
         <select (change)="changeDepartments()" [(ngModel)]="campos.departamentoSeleccionado.valor" id="departamento"
           class="form-control form-select tamano input-peque py-0">
-          <option> --selecciona-- </option>
+          <option selected disabled value="">--selecciona--</option>
           <option *ngFor="let d of listadoDepartamentos" value="{{d.Code}}">{{d.Description}}</option>
         </select>
       </div>
@@ -53,8 +52,8 @@
         <label for="ciudad" class="col-4 label-form">Ciudad<span class="text-danger"> *</span></label>
         <select [disabled]="campos.ciudadSeleccionada.habilitar" [(ngModel)]="campos.ciudadSeleccionada.valor" id="ciudad"
           class="form-control form-select tamano input-peque py-0">
-          <option> --selecciona-- </option>
-          <option *ngFor="let c of listadoDeCiudades" value="">{{c.Description}}</option>
+          <option selected disabled value="">--selecciona--</option>
+        <option *ngFor="let c of listadoDeCiudades" value="">{{c.Description}}</option>
         </select>
       </div>
     </div>

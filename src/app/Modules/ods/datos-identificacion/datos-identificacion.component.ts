@@ -1,3 +1,5 @@
+import { Generalresp } from './../../../Models/generalresp';
+import { Documentos } from 'src/app/Models/documentos';
 import { Component, OnInit } from '@angular/core';
 import { Cities } from 'src/app/Models/cities';
 import { Departments } from 'src/app/Models/departments';
@@ -12,8 +14,10 @@ import { ServiciosJavaService } from 'src/app/Services/servicios-java.service';
 })
 export class DatosIdentificacionComponent implements OnInit {
   private respGeneralDepar: RespGeneral;
+  private respGeneralDocu: Generalresp[];
   public listadoDepartamentos: Departments[];
   public listadoDeCiudades: Cities[];
+  public listadoDeDocumentos: Documentos[];
 
   constructor(
     private servicios: ServiciosJavaService,
@@ -22,7 +26,9 @@ export class DatosIdentificacionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDeparatamentosandcites();
+    this.postDocumentos();
   }
+
   getDeparatamentosandcites() {
     this.servicios.getCitiesDepartaments().subscribe(
       data => {
@@ -41,12 +47,33 @@ export class DatosIdentificacionComponent implements OnInit {
     )
   }
 
+  postDocumentos() {
+    this.servicios.postDocumentos().subscribe(
+      data => {
+        console.log('Resp parámetros: ', data);
+        this.respGeneralDocu = data as Generalresp[];
+        // console.log('Datos tipos de documento: ', this.respGeneralDocu);
+        const tiposDocumento = this.respGeneralDocu.find(p => p.NAME_PARAMETER.indexOf('DOCUMENT_TYPES') != -1)
+        // console.log('Los tipos de documento son:', tiposDocumento);
+        if (tiposDocumento) {
+          this.listadoDeDocumentos = JSON.parse(tiposDocumento.VALUE_PARAMETER);
+          console.log('Tipos de Documento: ', this.listadoDeDocumentos);
+        } else {
+          console.log('Error: ', tiposDocumento); // DESPUES
+        }
+      }, error => {
+        console.log('Error tipos de documento: ', error);
+      }
+    )
+
+  }
+
   changeDepartments() {
     const departamento = this.listadoDepartamentos.find(departamento =>
       departamento.Code === this.campos.departamentoSeleccionado.valor
     )
     console.log('Departamento seleccionado: ', departamento);
-    if (!departamento) {
+    if (departamento) {
       this.listadoDeCiudades = departamento.Cities;
       this.campos.ciudadSeleccionada.habilitar = false;
     } else {
@@ -54,3 +81,4 @@ export class DatosIdentificacionComponent implements OnInit {
     }
   }
 }
+

@@ -6,9 +6,10 @@ import { CampoGeneral } from '../Models/campo-general';
 })
 export class CamposService {
 
-  departamentoSeleccionado = {} as CampoGeneral;
-  ciudadSeleccionada = {} as CampoGeneral;
+  departamentoSeleccionado = { valor: ''} as CampoGeneral;
+  ciudadSeleccionada = { valor: ''} as CampoGeneral;
   direccion = {} as CampoGeneral;
+  documentoSeleccionado = { valor: ''} as CampoGeneral;
 
   constructor() {
     this.inicializarCampos()
