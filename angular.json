@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "app-ods"
+    }
+  },
+  "defaultProject": "app-ods",
+  "cli": {
+    "analytics": "851056ac-fb8a-498f-9bbf-26d34bb1c6a5"
+  }
 }
