@@ -5,24 +5,25 @@
       <div class="col-12 row mb-3">
         <label for="nombresyapellidos" class="col-4 label-form">Nombres y apellidos<span class="text-danger"> *</span>
         </label>
-        <input id="nombresyapellidos" type="text" class="form-control col-12 tamano input-peque">
+        <input [disabled]="campos.formDatosIdentificacion.nombres.habilitar" [(ngModel)]="campos.formDatosIdentificacion.nombres.valor" id="nombresyapellidos" type="text" class="form-control col-12 tamano input-peque">
       </div>
     </div>
     <div class="col-md-6">
       <div class="col-12 row mb-3">
         <label for="tipodedocumento" class="col-4 label-form">Tipo de Documento<span class="text-danger">
             *</span></label>
-            <select [(ngModel)]="campos.documentoSeleccionado.valor" id="tipodedocumento" class="form-control form-select tamano input-peque py-0">
-            <option selected disabled value=""> --selecciona-- </option>
-            <option *ngFor="let d of listadoDeDocumentos" value="{{d.Code}}">{{d.Description}}</option>
-          </select>
+        <select [disabled]="campos.formDatosIdentificacion.tipoDocumentoSeleccionado.habilitar" [(ngModel)]="campos.formDatosIdentificacion.tipoDocumentoSeleccionado.valor" id="tipodedocumento"
+          class="form-control form-select tamano input-peque py-0">
+          <option selected disabled value=""> --selecciona-- </option>
+          <option *ngFor="let d of listadoDeDocumentos" value="{{d.Id}}">{{d.Description}}</option>
+        </select>
       </div>
     </div>
     <div class="col-md-6">
       <div class="col-12 row mb-3">
         <label for="nodedocumento" class="col-4 label-form">No.de Documento<span class="text-danger"> * </span>
         </label>
-        <input id="nodedocumento" type="text" class="form-control col-12 tamano">
+        <input [disabled]="campos.formDatosIdentificacion.noDocumento.habilitar" [(ngModel)]="campos.formDatosIdentificacion.noDocumento.valor" id="nodedocumento" type="text" class="form-control col-12 tamano">
       </div>
     </div>
     <div class="col-md-6">
@@ -34,13 +35,18 @@
     <div class="col-md-6">
       <div class="col-12 row mb-3">
         <label for="email" class="col-4 label-form">Email<span class="text-danger"> *</span></label>
-        <input id="email" type="text" class="form-control col-12 tamano input-peque">
+        <input [(ngModel)]="campos.formDatosIdentificacion.email.valor" (change)="changeCorreos()"
+          (keyup)="changeCorreos()" id="email" type="email" class="form-control col-12 tamano input-peque">
+        <h5 class="m-0 mt-1 mensajes-negrita text-{{campos.formDatosIdentificacion.email.color}}">
+          {{campos.formDatosIdentificacion.email.mensaje}}
+        </h5>
       </div>
     </div>
     <div class="col-md-6">
       <div class="col-12 row mb-3">
         <label for="departamento" class="label-form">Departamento<span class="text-danger"> *</span></label>
-        <select (change)="changeDepartments()" [(ngModel)]="campos.departamentoSeleccionado.valor" id="departamento"
+        <select (change)="changeDepartments()"
+          [(ngModel)]="campos.formDatosIdentificacion.departamentoSeleccionado.valor" id="departamento"
           class="form-control form-select tamano input-peque py-0">
           <option selected disabled value="">--selecciona--</option>
           <option *ngFor="let d of listadoDepartamentos" value="{{d.Code}}">{{d.Description}}</option>
@@ -50,23 +56,24 @@
     <div class="col-md-6">
       <div class="col-12 row mb-3">
         <label for="ciudad" class="col-4 label-form">Ciudad<span class="text-danger"> *</span></label>
-        <select [disabled]="campos.ciudadSeleccionada.habilitar" [(ngModel)]="campos.ciudadSeleccionada.valor" id="ciudad"
+        <select [disabled]="campos.formDatosIdentificacion.ciudadSeleccionada.habilitar"
+          [(ngModel)]="campos.formDatosIdentificacion.ciudadSeleccionada.valor" id="ciudad"
           class="form-control form-select tamano input-peque py-0">
           <option selected disabled value="">--selecciona--</option>
-        <option *ngFor="let c of listadoDeCiudades" value="">{{c.Description}}</option>
+          <option *ngFor="let c of listadoDeCiudades" value="">{{c.Description}}</option>
         </select>
       </div>
     </div>
     <div class="col-md-9">
       <div class="col-12 row mb-3">
         <label for="direccion" class="col-4 label-form">Direccion<span class="text-danger"> *</span></label>
-        <input id="direccion" [(ngModel)]="campos.direccion.valor" type="text"
+        <input id="direccion" [(ngModel)]="campos.formDatosIdentificacion.direccion.valor" type="text"
           class="form-control col-12 tamano input-peque">
       </div>
     </div>
     <div class="col-md-3">
       <div class="col-12 row mt-3">
-        <button class="btn btn-success rounded-pill tamano input-peque py-0">Validar</button>
+        <button (click)="putMgl()" class="btn btn-success rounded-pill tamano input-peque py-0">Validar</button>
       </div>
     </div>
   </div>

@@ -6,17 +6,26 @@ import { CampoGeneral } from '../Models/campo-general';
 })
 export class CamposService {
 
-  departamentoSeleccionado = { valor: ''} as CampoGeneral;
-  ciudadSeleccionada = { valor: ''} as CampoGeneral;
-  direccion = {} as CampoGeneral;
-  documentoSeleccionado = { valor: ''} as CampoGeneral;
+
+  formDatosIdentificacion = {
+    nombres: { valor: '', habilitar: true } as CampoGeneral,
+    tipoDocumentoSeleccionado: { valor: '', habilitar: true } as CampoGeneral,
+    noDocumento: { valor: '', habilitar: true } as CampoGeneral,
+    telefono: { valor: '' } as CampoGeneral,
+    email: { valor: '' } as CampoGeneral,
+    departamentoSeleccionado: { valor: '' } as CampoGeneral,
+    ciudadSeleccionada: { valor: '', habilitar: true } as CampoGeneral,
+    direccion: { valor: '' } as CampoGeneral,
+  }
+
+  formInformacionEquipo = {
+
+  }
+
+
 
   constructor() {
-    this.inicializarCampos()
-   }
 
-  inicializarCampos ():void {
-    this.ciudadSeleccionada.habilitar = true;
-    this.direccion.valor = 'Calle 45 N 34-54 APTO 304';
   }
+
 }
