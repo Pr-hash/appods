@@ -8,6 +8,7 @@ import { AceptacionDeCondicionesComponent } from './aceptacion-de-condiciones/ac
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
 
 @NgModule({
   declarations: [
@@ -21,8 +22,9 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    FormsModule
-  ], exports:[
+    FormsModule,
+    AngularMaterialModule
+  ], exports: [
     FormularioComponent
   ]
 })

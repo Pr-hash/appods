@@ -1,2 +1,62 @@
-<app-datos-identificacion></app-datos-identificacion>
-<app-aceptacion-de-condiciones></app-aceptacion-de-condiciones>
+<div class="container-fluid mt-4">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header class="bg-danger">
+        <mat-panel-title class="text-blanco">
+          Datos de identificación
+        </mat-panel-title>
+        <mat-panel-description>
+          <span></span>
+          <mat-icon class="text-blanco">add_circle</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="container mt-4">
+        <app-datos-identificacion></app-datos-identificacion>
+      </div>
+      <mat-action-row>
+        <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header class="bg-secondary">
+        <mat-panel-title class="text-blanco">
+          Datos del equipo
+        </mat-panel-title>
+        <mat-panel-description>
+          <span></span>
+          <mat-icon class="text-blanco">add_circle</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="container mt-4">
+        <app-datos-del-equipo></app-datos-del-equipo>
+      </div>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Anterior</button>
+        <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+      <mat-expansion-panel-header class="bg-secondary">
+        <mat-panel-title class="text-blanco">
+          Estado - Inspección física
+        </mat-panel-title>
+        <mat-panel-description>
+          <span></span>
+          <mat-icon class="text-blanco">add_circle</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="container mt-4">
+        <app-estado-inspeccion-fisica></app-estado-inspeccion-fisica>
+      </div>
+      <!-- <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" (focus)="picker.open()" readonly>
+      </mat-form-field> -->
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Anterior</button>
+        <button mat-button color="primary" (click)="nextStep()">Terminar</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
