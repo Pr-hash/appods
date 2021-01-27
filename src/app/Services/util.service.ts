@@ -1,5 +1,6 @@
 
-import { Injectable } from '@angular/core';
+import { Injectable, Component, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CampoGeneral } from 'src/app/Models/campo-general';
 
 @Injectable({
@@ -7,8 +8,11 @@ import { CampoGeneral } from 'src/app/Models/campo-general';
 })
 export class UtilService {
 
+  // @BlockUI() blockUI: NgBlockUI;
+  alerta = {} as Alerta;
   regexpEmail = RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}$');
-  constructor() { }
+
+  constructor(public dialog: MatDialog) { }
 
   validarCorreos(email: CampoGeneral) {
     if (email.valor == '') {
@@ -88,6 +92,44 @@ export class UtilService {
       direccion.color = 'success';
       direccion.estado = true;
     }
+  }
+
+  // desbloquearUI() {
+  //   this.blockUI.stop();
+  // }
+
+  lanzarModal(positiva: boolean, mensaje: string) {
+    this.alerta.texto = mensaje;
+    if (positiva) {
+      this.alerta.color = 'mensaje-positivo';
+      this.alerta.icono = 'fa fa-check-circle';
+    } else {
+      this.alerta.color = 'mensaje-negativo';
+      this.alerta.icono = 'fa fa-info-circle';
+    }
+    this.dialog.open(modalMensajes, { panelClass: this.alerta.color, data: this.alerta });
+  }
+
+}
+
+interface Alerta {
+  color: string;
+  icono: string;
+  texto: string;
+}
+
+@Component({
+  selector: 'dialog-elements-example-dialog',
+  templateUrl: './../Shared/Components/modal-mensajes/modal-mensajes.component.html',
+})
+
+export class modalMensajes {
+  constructor(
+    public dialogRef: MatDialogRef<modalMensajes>,
+    @Inject(MAT_DIALOG_DATA) public data: Alerta) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

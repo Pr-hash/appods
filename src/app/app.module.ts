@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { OdsModule } from './Modules/ods/ods.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
-
 @NgModule({
   declarations: [
     AppComponent
