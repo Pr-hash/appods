@@ -2,21 +2,21 @@ import { Injectable, Component, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CampoGeneral } from '../Models/campo-general';
 import { CamposService } from './campos.service';
-
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilService {
 
-  // @BlockUI() blockUI: NgBlockUI;
+  @BlockUI() blockUI: NgBlockUI;
   alerta = {} as Alerta;
   regexpEmail = RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}$');
 
   constructor(
     public dialog: MatDialog,
     private campos: CamposService,
-    ) { }
+  ) { }
 
   validarCorreos(email: CampoGeneral) {
     if (email.valor == '') {
@@ -98,9 +98,21 @@ export class UtilService {
     }
   }
 
-  // desbloquearUI() {
-  //   this.blockUI.stop();
-  // }
+  desbloquearUI() {
+    this.blockUI.stop();
+  }
+
+  bloquearUI() {
+    this.blockUI.start();
+  }
+
+  limpiarModal() {
+    this.alerta = {
+      color: '',
+      texto: '',
+      icono: '',
+    };
+  }
 
   lanzarModal(positiva: boolean, mensaje: string) {
     this.alerta.texto = mensaje;

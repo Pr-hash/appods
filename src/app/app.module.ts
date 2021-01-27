@@ -6,9 +6,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { OdsModule } from './Modules/ods/ods.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
+import { SharedModule } from './Shared/shared.module';
+import { BloqueadorUIComponent } from './Shared/block-ui/BloqueadorUIComponent';
+import { BlockUIModule } from 'ng-block-ui';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BloqueadorUIComponent
   ],
   imports: [
     BrowserModule,
@@ -16,9 +20,16 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
     HttpClientModule,
     OdsModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    SharedModule,
+    BlockUIModule.forRoot({
+      template: BloqueadorUIComponent
+    }),
   ],
   providers: [],
+  entryComponents: [
+    BloqueadorUIComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
