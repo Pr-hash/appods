@@ -78,7 +78,7 @@
     </div>
     <div class="col-md-3">
       <div class="col-12 row mt-3">
-        <button (click)="putMgl()" class="btn btn-success rounded-pill tamano input-peque py-0">Validar</button>
+        <button [disabled]="campos.formDatosIdentificacion.botonValidarDireccion.habilitar" (click)="putMgl()" class="btn btn-success rounded-pill tamano input-peque py-0">Validar</button>
       </div>
     </div>
   </div>

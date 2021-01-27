@@ -174,14 +174,22 @@ export class DatosIdentificacionComponent implements OnInit {
     this.utilService.validarCorreos(this.campos.formDatosIdentificacion.email);
   }
 
-  changeMin(){
+  changeMin() {
     this.utilService.validarMin(this.campos.formDatosIdentificacion.telefono);
   }
 
-  changeDireccion(){
-    this.utilService.validarDireccion(this.campos.formDatosIdentificacion.direccion);
+  async changeDireccion() {
+    await this.utilService.validarDireccion(this.campos.formDatosIdentificacion.direccion);
+    this.habilitarButton();
   }
 
+  habilitarButton() {
+    if (this.campos.formDatosIdentificacion.direccion.estado) {
+      this.campos.formDatosIdentificacion.botonValidarDireccion.habilitar = false;
+    } else {
+      this.campos.formDatosIdentificacion.botonValidarDireccion.habilitar = true;
+    }
+  }
 
 }
 

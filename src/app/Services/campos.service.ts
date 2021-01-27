@@ -15,7 +15,8 @@ export class CamposService {
     email: { valor: '' } as CampoGeneral,
     departamentoSeleccionado: { valor: '' } as CampoGeneral,
     ciudadSeleccionada: { valor: '', habilitar: true } as CampoGeneral,
-    direccion: { valor: '' } as CampoGeneral,
+    direccion: { valor: '', habilitar: true, estado: false } as CampoGeneral,
+    botonValidarDireccion: { habilitar: true } as CampoGeneral,
   }
 
   formInformacionEquipo = {
