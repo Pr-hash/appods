@@ -90,7 +90,7 @@ export class UtilService {
       direccion.mensaje = 'Digite un dirección válida';
       direccion.color = 'danger';
       direccion.estado = false;
-    }    else {
+    } else {
       direccion.mensaje = 'Dirección válida : Por Favor Validar';
       direccion.color = 'secondary';
     }

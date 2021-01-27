@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CampoGeneral } from '../Models/campo-general';
+import { Cities } from '../Models/cities';
+import { Departments } from '../Models/departments';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,8 @@ export class CamposService {
     ciudadSeleccionada: { valor: '', inhabilitar: true } as CampoGeneral,
     direccion: { valor: '', inhabilitar: false, estado: false } as CampoGeneral,
     botonValidarDireccion: { inhabilitar: true } as CampoGeneral,
+    objetoDepartamento: {} as Departments,
+    objetoCiudad: {} as Cities,
   }
 
   formInformacionEquipo = {

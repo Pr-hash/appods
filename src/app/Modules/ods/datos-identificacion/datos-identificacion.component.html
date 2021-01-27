@@ -68,10 +68,10 @@
       <div class="col-12 row mb-3">
         <label for="ciudad" class="label-form">Ciudad<span class="text-danger"> *</span></label>
         <select [disabled]="campos.formDatosIdentificacion.ciudadSeleccionada.inhabilitar"
-          [(ngModel)]="campos.formDatosIdentificacion.ciudadSeleccionada.valor" id="ciudad"
-          class="form-control form-select tamano input-peque py-0">
+          [(ngModel)]="campos.formDatosIdentificacion.ciudadSeleccionada.valor"
+           (change)="changeCiudad() " id="ciudad"class="form-control form-select tamano input-peque py-0">
           <option selected disabled value="">--selecciona--</option>
-          <option *ngFor="let c of listadoDeCiudades" value="">{{c.Description}}</option>
+          <option *ngFor="let c of listadoDeCiudades" value="{{c.Code}}">{{c.Description}}</option>
         </select>
       </div>
     </div>

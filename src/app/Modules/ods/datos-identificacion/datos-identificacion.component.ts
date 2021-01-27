@@ -147,6 +147,7 @@ export class DatosIdentificacionComponent implements OnInit {
     )
     console.log('Departamento seleccionado: ', departamento);
     if (departamento) {
+      this.campos.formDatosIdentificacion.objetoDepartamento = departamento;
       this.listadoDeCiudades = departamento.Cities;
       this.campos.formDatosIdentificacion.ciudadSeleccionada.inhabilitar = false;
     } else {
@@ -159,7 +160,7 @@ export class DatosIdentificacionComponent implements OnInit {
     console.log('Estandarizando dirección.');
     const body = {
       user: "hectorg",
-      codigoDane: "11001000",
+      codigoDane: this.campos.formDatosIdentificacion.ciudadSeleccionada.valor.padEnd(8, '0'),
       direccion: this.campos.formDatosIdentificacion.direccion.valor,
       direccionTabulada: {
         tipoViaPrincipal: "",
@@ -208,11 +209,15 @@ export class DatosIdentificacionComponent implements OnInit {
   }
 
   habilitarButton() {
-    if (this.campos.formDatosIdentificacion.direccion.estado) {
+    if (this.campos.formDatosIdentificacion.direccion.color == 'secondary') {
       this.campos.formDatosIdentificacion.botonValidarDireccion.inhabilitar = false;
     } else {
       this.campos.formDatosIdentificacion.botonValidarDireccion.inhabilitar = true;
     }
+  }
+
+  changeCiudad(){
+    console.log('Seleccioné ciudad: ',this.campos.formDatosIdentificacion.ciudadSeleccionada.valor);
   }
 
 }
