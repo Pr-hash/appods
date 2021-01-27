@@ -47,41 +47,47 @@ export class DatosIdentificacionComponent implements OnInit {
 
   validarSessionStoragea(): void {
 
-
     const nombres = sessionStorage.getItem('names');
     const noDocumento = sessionStorage.getItem('documentNumber');;
     const tipoDocumento = sessionStorage.getItem('documentType');
     const min = sessionStorage.getItem('min');
-    const hinoarashi = sessionStorage.getItem('honoType');
 
     if (sessionStorage.length > 0) {
 
+      let mensajeFalta = '';
+
       if (this.utilService.campoLleno(nombres)) {
         this.campos.formDatosIdentificacion.nombres.valor = nombres;
+        this.campos.formDatosIdentificacion.nombres.estado = false;
       } else {
-        // DESPUES
+        mensajeFalta += ' nombres,';
       }
       if (this.utilService.campoLleno(noDocumento)) {
         this.campos.formDatosIdentificacion.noDocumento.valor = noDocumento;
+        this.campos.formDatosIdentificacion.noDocumento.estado = false;
       } else {
-
+        mensajeFalta += ' número de documento,';
       }
       if (this.utilService.campoLleno(tipoDocumento)) {
         this.campos.formDatosIdentificacion.tipoDocumentoSeleccionado.valor = tipoDocumento;
+        this.campos.formDatosIdentificacion.tipoDocumentoSeleccionado.estado = false;
       } else {
-
+        mensajeFalta += ' tipo de documento,';
       }
       if (this.utilService.campoLleno(min)) {
         this.campos.formDatosIdentificacion.telefono.valor = min;
+        this.campos.formDatosIdentificacion.telefono.estado = false;
       } else {
         this.campos.formDatosIdentificacion.telefono.habilitar = false;
       }
+
+      if (this.utilService.campoLleno(mensajeFalta)) {
+        this.utilService.lanzarModal(false, 'No se encontraron las variables: ' + mensajeFalta + ' por favor recargue.')
+      }
     }
     else {
-      // DESPUESs
-      // ALERTAR QUE DIGA QUE NO HAY VARIABLES DE SESSION
+      this.utilService.lanzarModal(false, 'No se encontraron variables de sesión. Por favor recargue.');
     }
-
 
   }
 
