@@ -8,6 +8,7 @@
   align-items: center;
 }
 
-.example-headers-align .mat-form-field + .mat-form-field {
-  margin-left: 8px;
+.mat-expansion-panel-header {
+  max-height: 2.5em;
+  padding: 0px 0px 0px 10px;
 }

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="col-12 row mb-3">
-        <label for="nombresyapellidos" class="col-4 label-form">Nombres y apellidos<span class="text-danger"> *</span>
+        <label for="nombresyapellidos" class="label-form">Nombres y apellidos<span class="text-danger"> *</span>
         </label>
         <input [disabled]="campos.formDatosIdentificacion.nombres.inhabilitar"
           [(ngModel)]="campos.formDatosIdentificacion.nombres.valor" id="nombresyapellidos" type="text"
@@ -11,7 +11,7 @@
     </div>
     <div class="col-md-6">
       <div class="col-12 row mb-3">
-        <label for="tipodedocumento" class="col-4 label-form">Tipo de Documento<span class="text-danger">
+        <label for="tipodedocumento" class="label-form">Tipo de Documento<span class="text-danger">
             *</span></label>
         <select [disabled]="campos.formDatosIdentificacion.tipoDocumentoSeleccionado.inhabilitar"
           [(ngModel)]="campos.formDatosIdentificacion.tipoDocumentoSeleccionado.valor" id="tipodedocumento"
@@ -23,16 +23,16 @@
     </div>
     <div class="col-md-6">
       <div class="col-12 row mb-3">
-        <label for="nodedocumento" class="col-4 label-form">No.de Documento<span class="text-danger"> * </span>
+        <label for="nodedocumento" class="label-form">No.de Documento<span class="text-danger"> * </span>
         </label>
         <input [disabled]="campos.formDatosIdentificacion.noDocumento.inhabilitar"
           [(ngModel)]="campos.formDatosIdentificacion.noDocumento.valor" id="nodedocumento" type="text"
-          class="form-control col-12 tamano">
+          class="form-control col-12 tamano input-peque">
       </div>
     </div>
     <div class="col-md-6">
       <div class="col-12 row mb-3">
-        <label for="telefono" class="col-4 label-form">Telefono<span class="text-danger"> *</span></label>
+        <label for="telefono" class="label-form">Telefono<span class="text-danger"> *</span></label>
         <input (change)="changeMin()" (keyup)="changeMin()" (keypress)="utilService.caracteresNumerico($event)"
           [disabled]="campos.formDatosIdentificacion.telefono.inhabilitar"
           [(ngModel)]="campos.formDatosIdentificacion.telefono.valor" id="telefono" type="text" maxlength="10"
@@ -44,9 +44,10 @@
     </div>
     <div class="col-md-6">
       <div class="col-12 row mb-3">
-        <label for="email" class="col-4 label-form">Email<span class="text-danger"> *</span></label>
-        <input [disabled]="campos.formDatosIdentificacion.email.inhabilitar" [(ngModel)]="campos.formDatosIdentificacion.email.valor" (change)="changeCorreos()"
-          (keyup)="changeCorreos()" id="email" type="email" class="form-control col-12 tamano input-peque">
+        <label for="email" class="label-form">Email<span class="text-danger"> *</span></label>
+        <input [disabled]="campos.formDatosIdentificacion.email.inhabilitar"
+          [(ngModel)]="campos.formDatosIdentificacion.email.valor" (change)="changeCorreos()" (keyup)="changeCorreos()"
+          id="email" type="email" class="form-control col-12 tamano input-peque">
         <h5 class="m-0 mt-1 mensajes-negrita text-{{campos.formDatosIdentificacion.email.color}}">
           {{campos.formDatosIdentificacion.email.mensaje}}
         </h5>
@@ -55,9 +56,9 @@
     <div class="col-md-6">
       <div class="col-12 row mb-3">
         <label for="departamento" class="label-form">Departamento<span class="text-danger"> *</span></label>
-        <select [disabled]="campos.formDatosIdentificacion.departamentoSeleccionado.inhabilitar" (change)="changeDepartments()"
-          [(ngModel)]="campos.formDatosIdentificacion.departamentoSeleccionado.valor" id="departamento"
-          class="form-control form-select tamano input-peque py-0">
+        <select [disabled]="campos.formDatosIdentificacion.departamentoSeleccionado.inhabilitar"
+          (change)="changeDepartments()" [(ngModel)]="campos.formDatosIdentificacion.departamentoSeleccionado.valor"
+          id="departamento" class="form-control form-select tamano input-peque py-0">
           <option selected disabled value="">--selecciona--</option>
           <option *ngFor="let d of listadoDepartamentos" value="{{d.Code}}">{{d.Description}}</option>
         </select>
@@ -65,7 +66,7 @@
     </div>
     <div class="col-md-6">
       <div class="col-12 row mb-3">
-        <label for="ciudad" class="col-4 label-form">Ciudad<span class="text-danger"> *</span></label>
+        <label for="ciudad" class="label-form">Ciudad<span class="text-danger"> *</span></label>
         <select [disabled]="campos.formDatosIdentificacion.ciudadSeleccionada.inhabilitar"
           [(ngModel)]="campos.formDatosIdentificacion.ciudadSeleccionada.valor" id="ciudad"
           class="form-control form-select tamano input-peque py-0">
@@ -76,9 +77,9 @@
     </div>
     <div class="col-md-9">
       <div class="col-12 row mb-3">
-        <label for="direccion" class="col-4 label-form">Direccion<span class="text-danger"> *</span></label>
-        <input [disabled]="campos.formDatosIdentificacion.direccion.inhabilitar" (change)="changeDireccion()" (keyup)="changeDireccion()"
-          (keypress)="utilService.caracteresAlfanumerico($event)" id="direccion"
+        <label for="direccion" class="label-form">Dirección<span class="text-danger"> *</span></label>
+        <input [disabled]="campos.formDatosIdentificacion.direccion.inhabilitar" (change)="changeDireccion()"
+          (keyup)="changeDireccion()" (keypress)="utilService.caracteresAlfanumerico($event)" id="direccion"
           [(ngModel)]="campos.formDatosIdentificacion.direccion.valor" type="text" maxlength="100"
           class="form-control col-12 tamano input-peque">
         <h5 class="m-0 mt-1 mensajes-negrita text-{{campos.formDatosIdentificacion.direccion.color}}">
