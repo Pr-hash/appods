@@ -82,7 +82,6 @@ export class UtilService {
   }
 
   validarDireccion(direccion: CampoGeneral) {
-    console.log('Dirección: ', !this.campoLleno(direccion.valor))
     if (!this.campoLleno(direccion.valor)) {
       direccion.mensaje = 'Digite un dirección';
       direccion.color = 'danger';
@@ -91,10 +90,9 @@ export class UtilService {
       direccion.mensaje = 'Digite un dirección válida';
       direccion.color = 'danger';
       direccion.estado = false;
-    } else {
-      direccion.mensaje = 'Dirección válida';
-      direccion.color = 'success';
-      direccion.estado = true;
+    }    else {
+      direccion.mensaje = 'Dirección válida : Por Favor Validar';
+      direccion.color = 'secondary';
     }
   }
 

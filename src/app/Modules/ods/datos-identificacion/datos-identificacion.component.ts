@@ -34,11 +34,11 @@ export class DatosIdentificacionComponent implements OnInit {
     sessionStorage.clear();
     // SESSIONSTORAGE QUEMADAS - QUITAR DESPUÉS
     sessionStorage.setItem('documentType', '1');
-  //   sessionStorage.setItem('documentNumber', '1234567890');
-  //   sessionStorage.setItem('names', 'Juan Camilo Rincón');
-  //   sessionStorage.setItem('min', '312 343 3564');
-  //
-}
+    sessionStorage.setItem('documentNumber', '1234567890');
+    sessionStorage.setItem('names', 'Juan Camilo Rincón');
+    sessionStorage.setItem('min', '312 343 3564');
+
+  }
 
   ngOnInit(): void {
     this.getDeparatamentosandcites();
@@ -105,11 +105,13 @@ export class DatosIdentificacionComponent implements OnInit {
           console.log('Departamentos: ', this.listadoDepartamentos);
         } else {
           console.log('Error: ', this.respGeneralDepar.message);
-          this.utilService.lanzarModal(false, 'El listado de departamentos no llegó como se esperaba. Por favor recargue.');
+          this.utilService.lanzarModal(false, this.respGeneralDepar.message + '. El listado de departamentos no llegó como se esperaba. Por favor recargue.');
+          this.utilService.cambiarEstadoForDatosIdentificacion(true);
         }
       }, error => {
         console.log('Error de ciudades y departamentos:', error);
         this.utilService.lanzarModal(false, 'Ocurrió un error durante el proceso de listar los depertamentos. Por favor recargue.');
+        this.utilService.cambiarEstadoForDatosIdentificacion(true);
       }
     )
   }
@@ -128,10 +130,12 @@ export class DatosIdentificacionComponent implements OnInit {
         } else {
           console.log('Error: ', tiposDocumento);
           this.utilService.lanzarModal(false, 'El listado de tipos de documento no llegó como se esperaba. Por favor recargue.');
+          this.utilService.cambiarEstadoForDatosIdentificacion(true);
         }
       }, error => {
         console.log('Error tipos de documento: ', error);
         this.utilService.lanzarModal(false, 'Ocurrió un error al listar los tipos de documento. Por favor recargue.');
+        this.utilService.cambiarEstadoForDatosIdentificacion(true);
       }
     )
 
@@ -174,8 +178,14 @@ export class DatosIdentificacionComponent implements OnInit {
         if (this.respGeneralMgl.messageType == 'I') {
           // BIEN
           this.campos.formDatosIdentificacion.direccion.valor = this.respGeneralMgl.listAddresses[0].splitAddres.direccionTexto;
+          this.campos.formDatosIdentificacion.direccion.estado = true;
+          this.campos.formDatosIdentificacion.direccion.mensaje = 'Dirección válida';
+          this.campos.formDatosIdentificacion.direccion.color = 'success';
+          this.campos.formDatosIdentificacion.botonValidarDireccion.inhabilitar = true;
         } else {
-          // MAL
+          console.log('No se estandarizó la dirección.');
+          this.campos.formDatosIdentificacion.direccion.mensaje =  this.respGeneralMgl.message;
+          this.campos.formDatosIdentificacion.direccion.color = 'danger';
         }
       }, error => {
         console.log('Error mgl: ', error);
