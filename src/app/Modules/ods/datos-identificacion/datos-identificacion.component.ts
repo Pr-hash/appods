@@ -36,7 +36,7 @@ export class DatosIdentificacionComponent implements OnInit {
     sessionStorage.setItem('documentType', '1');
     sessionStorage.setItem('documentNumber', '1234567890');
     sessionStorage.setItem('names', 'Juan Camilo Rincón');
-    // sessionStorage.setItem('min', '312 343 3564');
+    sessionStorage.setItem('min', '312 343 3564');
     this.validarSessionStoragea();
   }
 
@@ -101,10 +101,12 @@ export class DatosIdentificacionComponent implements OnInit {
           this.listadoDepartamentos = JSON.parse(this.respGeneralDepar.message);
           console.log('Departamentos: ', this.listadoDepartamentos);
         } else {
-          console.log('Error: ', this.respGeneralDepar.message); // DESPUES
+          console.log('Error: ', this.respGeneralDepar.message);
+          this.utilService.lanzarModal(false, 'El listado de departamentos no llegó como se esperaba. Por favor recargue.');
         }
       }, error => {
-        console.log('Error de ciudades y departamentos:', error); // DESPUES
+        console.log('Error de ciudades y departamentos:', error);
+        this.utilService.lanzarModal(false, 'Ocurrió un error durante el proceso de listar los depertamentos. Por favor recargue.');
       }
     )
   }
@@ -121,10 +123,12 @@ export class DatosIdentificacionComponent implements OnInit {
           this.listadoDeDocumentos = JSON.parse(tiposDocumento.VALUE_PARAMETER);
           console.log('Tipos de Documento: ', this.listadoDeDocumentos);
         } else {
-          console.log('Error: ', tiposDocumento); // DESPUES
+          console.log('Error: ', tiposDocumento);
+          this.utilService.lanzarModal(false, 'El listado de tipos de documento no llegó como se esperaba. Por favor recargue.');
         }
       }, error => {
         console.log('Error tipos de documento: ', error);
+        this.utilService.lanzarModal(false, 'Ocurrió un error al listar los tipos de documento. Por favor recargue.');
       }
     )
 
@@ -139,7 +143,8 @@ export class DatosIdentificacionComponent implements OnInit {
       this.listadoDeCiudades = departamento.Cities;
       this.campos.formDatosIdentificacion.ciudadSeleccionada.habilitar = false;
     } else {
-      console.log('No se encontraron ciudades.') // DESPUES
+      console.log('No se encontraron ciudades.');
+      this.utilService.lanzarModal(false, 'No se encontraron ciudades para el departamento seleccionado. Por favor, seleccione otro departamento.');
     }
   }
 
