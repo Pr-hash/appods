@@ -35,9 +35,10 @@ export class DatosIdentificacionComponent implements OnInit {
     // SESSIONSTORAGE QUEMADAS - QUITAR DESPUÉS
     sessionStorage.setItem('documentType', '1');
     sessionStorage.setItem('documentNumber', '1234567890');
-    sessionStorage.setItem('names', 'JuanCamilo Rincón');
+    sessionStorage.setItem('names', 'Juan Camilo Rincón');
+    // sessionStorage.setItem('min', '312 343 3564');
     this.validarSessionStoragea();
-    }
+  }
 
   ngOnInit(): void {
     this.getDeparatamentosandcites();
@@ -45,9 +46,42 @@ export class DatosIdentificacionComponent implements OnInit {
   }
 
   validarSessionStoragea(): void {
-    this.campos.formDatosIdentificacion.nombres.valor = sessionStorage.getItem('names');
-    this.campos.formDatosIdentificacion.tipoDocumentoSeleccionado.valor = sessionStorage.getItem('documentType');
-    this.campos.formDatosIdentificacion.noDocumento.valor = sessionStorage.getItem('documentNumber');
+
+
+    const nombres = sessionStorage.getItem('names');
+    const noDocumento = sessionStorage.getItem('documentNumber');;
+    const tipoDocumento = sessionStorage.getItem('documentType');
+    const min = sessionStorage.getItem('min');
+    const hinoarashi = sessionStorage.getItem('honoType');
+
+    if (sessionStorage.length > 0) {
+
+      if (this.utilService.campoLleno(nombres)) {
+        this.campos.formDatosIdentificacion.nombres.valor = nombres;
+      } else {
+        // DESPUES
+      }
+      if (this.utilService.campoLleno(noDocumento)) {
+        this.campos.formDatosIdentificacion.noDocumento.valor = noDocumento;
+      } else {
+
+      }
+      if (this.utilService.campoLleno(tipoDocumento)) {
+        this.campos.formDatosIdentificacion.tipoDocumentoSeleccionado.valor = tipoDocumento;
+      } else {
+
+      }
+      if (this.utilService.campoLleno(min)) {
+        this.campos.formDatosIdentificacion.telefono.valor = min;
+      } else {
+        this.campos.formDatosIdentificacion.telefono.habilitar = false;
+      }
+    }
+    else {
+      // DESPUESs
+      // ALERTAR QUE DIGA QUE NO HAY VARIABLES DE SESSION
+    }
+
 
   }
 
@@ -137,11 +171,15 @@ export class DatosIdentificacionComponent implements OnInit {
   }
 
   changeCorreos() {
-
     this.utilService.validarCorreos(this.campos.formDatosIdentificacion.email);
+  }
 
+  changeMin(){
+    this.utilService.validarMin(this.campos.formDatosIdentificacion.telefono);
+  }
 
-
+  changeDireccion(){
+    this.utilService.validarDireccion(this.campos.formDatosIdentificacion.direccion);
   }
 
 

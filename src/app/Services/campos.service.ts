@@ -11,7 +11,7 @@ export class CamposService {
     nombres: { valor: '', habilitar: true } as CampoGeneral,
     tipoDocumentoSeleccionado: { valor: '', habilitar: true } as CampoGeneral,
     noDocumento: { valor: '', habilitar: true } as CampoGeneral,
-    telefono: { valor: '' } as CampoGeneral,
+    telefono: { valor: '', habilitar: true } as CampoGeneral,
     email: { valor: '' } as CampoGeneral,
     departamentoSeleccionado: { valor: '' } as CampoGeneral,
     ciudadSeleccionada: { valor: '', habilitar: true } as CampoGeneral,

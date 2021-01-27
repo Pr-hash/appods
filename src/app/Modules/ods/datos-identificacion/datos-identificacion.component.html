@@ -1,5 +1,4 @@
 <div class="container">
-  <div class="boton-rojo">Datos de Identificacion</div>
   <div class="row">
     <div class="col-md-12">
       <div class="col-12 row mb-3">
@@ -29,7 +28,10 @@
     <div class="col-md-6">
       <div class="col-12 row mb-3">
         <label for="telefono" class="col-4 label-form">Telefono<span class="text-danger"> *</span></label>
-        <input id="telefono" type="text" class="form-control col-12 tamano input-peque">
+        <input (change)="changeMin()" (keyup)="changeMin()" (keypress)="utilService.caracteresNumerico($event)" [disabled]="campos.formDatosIdentificacion.telefono.habilitar" [(ngModel)]="campos.formDatosIdentificacion.telefono.valor" id="telefono" type="text" maxlength="10" class="form-control col-12 tamano input-peque">
+        <h5 class="m-0 mt-1 mensajes-negrita text-{{campos.formDatosIdentificacion.telefono.color}}">
+          {{campos.formDatosIdentificacion.telefono.mensaje}}
+        </h5>
       </div>
     </div>
     <div class="col-md-6">
@@ -67,8 +69,11 @@
     <div class="col-md-9">
       <div class="col-12 row mb-3">
         <label for="direccion" class="col-4 label-form">Direccion<span class="text-danger"> *</span></label>
-        <input id="direccion" [(ngModel)]="campos.formDatosIdentificacion.direccion.valor" type="text"
+        <input (change)="changeDireccion()" (keyup)="changeDireccion()" (keypress)="utilService.caracteresAlfanumerico($event)"  id="direccion" [(ngModel)]="campos.formDatosIdentificacion.direccion.valor" type="text" maxlength="100"
           class="form-control col-12 tamano input-peque">
+          <h5 class="m-0 mt-1 mensajes-negrita text-{{campos.formDatosIdentificacion.direccion.color}}">
+            {{campos.formDatosIdentificacion.direccion.mensaje}}
+          </h5>
       </div>
     </div>
     <div class="col-md-3">
