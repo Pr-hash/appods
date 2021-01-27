@@ -31,21 +31,22 @@ export class DatosIdentificacionComponent implements OnInit {
     public utilService: UtilService
 
   ) {
-
+    sessionStorage.clear();
     // SESSIONSTORAGE QUEMADAS - QUITAR DESPUÉS
     sessionStorage.setItem('documentType', '1');
-    sessionStorage.setItem('documentNumber', '1234567890');
-    sessionStorage.setItem('names', 'Juan Camilo Rincón');
-    sessionStorage.setItem('min', '312 343 3564');
-    this.validarSessionStoragea();
-  }
+  //   sessionStorage.setItem('documentNumber', '1234567890');
+  //   sessionStorage.setItem('names', 'Juan Camilo Rincón');
+  //   sessionStorage.setItem('min', '312 343 3564');
+  //
+}
 
   ngOnInit(): void {
     this.getDeparatamentosandcites();
     this.postDocumentos();
+    this.validarSessionStorage();
   }
 
-  validarSessionStoragea(): void {
+  validarSessionStorage(): void {
 
     const nombres = sessionStorage.getItem('names');
     const noDocumento = sessionStorage.getItem('documentNumber');;
@@ -78,15 +79,17 @@ export class DatosIdentificacionComponent implements OnInit {
         this.campos.formDatosIdentificacion.telefono.valor = min;
         this.campos.formDatosIdentificacion.telefono.estado = false;
       } else {
-        this.campos.formDatosIdentificacion.telefono.habilitar = false;
+        this.campos.formDatosIdentificacion.telefono.inhabilitar = false;
       }
 
       if (this.utilService.campoLleno(mensajeFalta)) {
         this.utilService.lanzarModal(false, 'No se encontraron las variables: ' + mensajeFalta + ' por favor recargue.')
+        this.utilService.cambiarEstadoForDatosIdentificacion(true);
       }
     }
     else {
       this.utilService.lanzarModal(false, 'No se encontraron variables de sesión. Por favor recargue.');
+      this.utilService.cambiarEstadoForDatosIdentificacion(true);
     }
 
   }
@@ -141,7 +144,7 @@ export class DatosIdentificacionComponent implements OnInit {
     console.log('Departamento seleccionado: ', departamento);
     if (departamento) {
       this.listadoDeCiudades = departamento.Cities;
-      this.campos.formDatosIdentificacion.ciudadSeleccionada.habilitar = false;
+      this.campos.formDatosIdentificacion.ciudadSeleccionada.inhabilitar = false;
     } else {
       console.log('No se encontraron ciudades.');
       this.utilService.lanzarModal(false, 'No se encontraron ciudades para el departamento seleccionado. Por favor, seleccione otro departamento.');
@@ -196,9 +199,9 @@ export class DatosIdentificacionComponent implements OnInit {
 
   habilitarButton() {
     if (this.campos.formDatosIdentificacion.direccion.estado) {
-      this.campos.formDatosIdentificacion.botonValidarDireccion.habilitar = false;
+      this.campos.formDatosIdentificacion.botonValidarDireccion.inhabilitar = false;
     } else {
-      this.campos.formDatosIdentificacion.botonValidarDireccion.habilitar = true;
+      this.campos.formDatosIdentificacion.botonValidarDireccion.inhabilitar = true;
     }
   }
 

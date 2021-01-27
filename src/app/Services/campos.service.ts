@@ -8,22 +8,20 @@ export class CamposService {
 
 
   formDatosIdentificacion = {
-    nombres: { valor: '', habilitar: true } as CampoGeneral,
-    tipoDocumentoSeleccionado: { valor: '', habilitar: true } as CampoGeneral,
-    noDocumento: { valor: '', habilitar: true } as CampoGeneral,
-    telefono: { valor: '', habilitar: true } as CampoGeneral,
-    email: { valor: '' } as CampoGeneral,
-    departamentoSeleccionado: { valor: '' } as CampoGeneral,
-    ciudadSeleccionada: { valor: '', habilitar: true } as CampoGeneral,
-    direccion: { valor: '', habilitar: true, estado: false } as CampoGeneral,
-    botonValidarDireccion: { habilitar: true } as CampoGeneral,
+    nombres: { valor: '', inhabilitar: true } as CampoGeneral,
+    tipoDocumentoSeleccionado: { valor: '', inhabilitar: true } as CampoGeneral,
+    noDocumento: { valor: '', inhabilitar: true } as CampoGeneral,
+    telefono: { valor: '', inhabilitar: true } as CampoGeneral,
+    email: { valor: '', inhabilitar: false } as CampoGeneral,
+    departamentoSeleccionado: { valor: '', inhabilitar: false } as CampoGeneral,
+    ciudadSeleccionada: { valor: '', inhabilitar: true } as CampoGeneral,
+    direccion: { valor: '', inhabilitar: false, estado: false } as CampoGeneral,
+    botonValidarDireccion: { inhabilitar: true } as CampoGeneral,
   }
 
   formInformacionEquipo = {
 
   }
-
-
 
   constructor() {
 

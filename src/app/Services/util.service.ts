@@ -1,7 +1,8 @@
-
 import { Injectable, Component, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CampoGeneral } from 'src/app/Models/campo-general';
+import { CampoGeneral } from '../Models/campo-general';
+import { CamposService } from './campos.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,10 @@ export class UtilService {
   alerta = {} as Alerta;
   regexpEmail = RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}$');
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private campos: CamposService,
+    ) { }
 
   validarCorreos(email: CampoGeneral) {
     if (email.valor == '') {
@@ -110,6 +114,16 @@ export class UtilService {
     this.dialog.open(modalMensajes, { panelClass: this.alerta.color, data: this.alerta });
   }
 
+  cambiarEstadoForDatosIdentificacion(estado: boolean): void {
+    this.campos.formDatosIdentificacion.nombres.inhabilitar = estado;
+    this.campos.formDatosIdentificacion.tipoDocumentoSeleccionado.inhabilitar = estado;
+    this.campos.formDatosIdentificacion.noDocumento.inhabilitar = estado;
+    this.campos.formDatosIdentificacion.telefono.inhabilitar = estado;
+    this.campos.formDatosIdentificacion.email.inhabilitar = estado;
+    this.campos.formDatosIdentificacion.departamentoSeleccionado.inhabilitar = estado;
+    this.campos.formDatosIdentificacion.ciudadSeleccionada.inhabilitar = estado;
+    this.campos.formDatosIdentificacion.direccion.inhabilitar = estado;
+  }
 }
 
 interface Alerta {
