@@ -25,10 +25,12 @@ export class FormularioComponent implements OnInit {
 
   nextStep() {
     this.step++;
+    this.formularioSeleccionado = this.step;
   }
 
   prevStep() {
     this.step--;
+    this.formularioSeleccionado = this.step;
   }
 
 }
