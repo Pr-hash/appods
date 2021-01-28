@@ -9,10 +9,13 @@ import { UtilService } from './Services/util.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  begin: boolean = undefined;
   responseParameters: RespParameters;
+  begin: boolean = undefined;
+  beginAux: boolean = undefined;
+  strGroups = ['45_0'];
+  contador = 0;
 
   constructor(
     private servicios: ServiciosJavaService,
@@ -20,34 +23,41 @@ export class AppComponent implements OnInit {
     public campos: CamposService,
   ) {
     const errorM = 'No se logró consultar los parámetros necesarios';
-    this.servicios.getParameter('45_0', errorM).subscribe(
-      data => {
-        console.log('Parámetros: ', data);
-        if (util.campoLleno(data) && data.length > 0) {
-          this.begin = true;
-          this.responseParameters = new RespParameters;
-          this.responseParameters.parameters = [];
-          this.responseParameters.parameters = data;
-          this.loadParameters();
-        } else {
-          this.begin = false;
+
+    this.strGroups.forEach(strGroup => {
+      this.contador++;
+      this.servicios.getParameter(strGroup, errorM).subscribe(
+        data => {
+          console.log('Parámetros: ', data);
+          if (util.campoLleno(data) && data.length > 0) {
+            this.beginAux = true;
+            this.responseParameters = new RespParameters;
+            this.responseParameters.parameters = [];
+            this.responseParameters.parameters = data;
+            this.loadParameters();
+          } else {
+            this.beginAux = false;
+            util.lanzarModal(false, errorM + '.');
+          }
+        }, error => {
+          this.beginAux = false;
+          console.log('Error consulta parámetros: ', error);
           util.lanzarModal(false, errorM + '.');
         }
-      }, error => {
-        this.begin = false;
-        console.log('Error consulta parámetros: ', error);
-        util.lanzarModal(false, errorM + '.');
-      }
-    );
-    setTimeout(() => {
-      if (!this.begin) {
-        this.begin = false;
-      }
-    }, 7000);
+      );
+    });
+
+    this.loadBeginComponent();
   }
 
-  ngOnInit(): void {
-
+  loadBeginComponent() {
+    setTimeout(() => {
+      if (this.contador == this.strGroups.length && this.beginAux != undefined) {
+        this.begin = this.beginAux;
+      } else {
+        this.loadBeginComponent();
+      }
+    }, 1000);
   }
 
   loadParameters() {
@@ -55,18 +65,15 @@ export class AppComponent implements OnInit {
     NAME = NOMBRE QUE TIENE LA VARIABLE EN campos.service
     NAMEBD =  NOMBRE QUE SE ENCUENTRA EN LA BASE DE DATOS */
     const varParams = [
-      { name: 'paramTiposEquipo', nameBD: 'EQUIPMENT_TYPES' },
-      { name: 'paramTiposCliente', nameBD: 'CLIENT_TYPES' },
       { name: 'paramTiposDocumentos', nameBD: 'DOCUMENT_TYPES' },
-      { name: 'paramCondicionesGaran', nameBD: 'WARRANTY_CONDITIONAL' },
-      { name: 'paramWsCustomer', nameBD: 'WS_CUSTOMER_PRODUCT' },
-      { name: 'paramPreguntas', nameBD: 'QUESTIONS' },
-      { name: 'paramWsHistorico', nameBD: 'WS_QUERY_HISTORICAL' },
-      { name: 'paramWsSapInventory', nameBD: 'WS_SAP_INVENTORY' },
+      { name: 'paramWsRest', nameBD: 'WS_REST' },
     ];
 
     varParams.forEach(varParam => {
-      this.campos[varParam.name] = this.responseParameters.parameters.find(element => element.NAME_PARAMETER.indexOf(varParam.nameBD) > -1);
+      if (this.campos[varParam.name] == undefined) {
+        this.campos[varParam.name] = this.responseParameters.parameters.find(element => element.NAME_PARAMETER.indexOf(varParam.nameBD) > -1);
+      }
+
     });
 
   }

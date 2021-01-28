@@ -28,6 +28,7 @@ export class CamposService {
   }
 
   paramTiposDocumentos: any
+  paramWsRest: any
 
   constructor() {
 
