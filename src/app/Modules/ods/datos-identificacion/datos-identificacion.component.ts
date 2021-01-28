@@ -9,6 +9,7 @@ import { RespGeneral } from 'src/app/Models/resp-general';
 import { CamposService } from 'src/app/Services/campos.service';
 import { ServiciosJavaService } from 'src/app/Services/servicios-java.service';
 import { ResponseMgl } from 'src/app/Models/response-mgl';
+import { Direction } from 'readline';
 
 
 @Component({
@@ -23,7 +24,6 @@ export class DatosIdentificacionComponent implements OnInit {
   public listadoDepartamentos: Departments[];
   public listadoDeCiudades: Cities[];
   public listadoDeDocumentos: Documentos[];
-
 
   constructor(
     private servicios: ServiciosJavaService,
@@ -156,6 +156,7 @@ export class DatosIdentificacionComponent implements OnInit {
     }
   }
 
+
   putMgl() {
     console.log('Estandarizando dirección.');
     const body = {
@@ -185,7 +186,7 @@ export class DatosIdentificacionComponent implements OnInit {
           this.campos.formDatosIdentificacion.botonValidarDireccion.inhabilitar = true;
         } else {
           console.log('No se estandarizó la dirección.');
-          this.campos.formDatosIdentificacion.direccion.mensaje =  this.respGeneralMgl.message;
+          this.campos.formDatosIdentificacion.direccion.mensaje = this.respGeneralMgl.message ? this.respGeneralMgl.message : 'No se logró estandarizar la dirección, intente de nuevo.';
           this.campos.formDatosIdentificacion.direccion.color = 'danger';
         }
       }, error => {
@@ -216,9 +217,21 @@ export class DatosIdentificacionComponent implements OnInit {
     }
   }
 
-  changeCiudad(){
-    console.log('Seleccioné ciudad: ',this.campos.formDatosIdentificacion.ciudadSeleccionada.valor);
+  changeCiudad() {
+    const ciudad = this.listadoDeCiudades.find(ciudad =>
+      ciudad.Code === this.campos.formDatosIdentificacion.ciudadSeleccionada.valor
+    )
+    console.log('Seleccioné ciudad: ', this.campos.formDatosIdentificacion.ciudadSeleccionada.valor);
+    if (ciudad) {
+      this.campos.formDatosIdentificacion.objetoCiudad = ciudad;
+      this.campos.formDatosIdentificacion.direccion.inhabilitar = false;
+
+    } else {
+      console.log('No se encontraron ciudades.');
+      this.utilService.lanzarModal(false, 'No se encontraron ciudades para el departamento seleccionado. Por favor, seleccione otro departamento.');
+    }
   }
+
 
 }
 
