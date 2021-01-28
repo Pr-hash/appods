@@ -215,6 +215,7 @@ export class DatosIdentificacionComponent implements OnInit {
       if (this.utilService.campoLleno(this.campos.formDatosIdentificacion.direccion.valor)) {
         this.campos.formDatosIdentificacion.direccion.mensaje = 'Dirección válida. Por favor validar';
         this.campos.formDatosIdentificacion.direccion.color = 'secondary';
+        this.campos.formDatosIdentificacion.botonValidarDireccion.inhabilitar = false;
       }
     } else {
       this.campos.formDatosIdentificacion.direccion.inhabilitar = true;

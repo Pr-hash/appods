@@ -71,7 +71,7 @@
         <select [disabled]="campos.formDatosIdentificacion.ciudadSeleccionada.inhabilitar"
           [(ngModel)]="campos.formDatosIdentificacion.ciudadSeleccionada.valor" (change)="changeCiudad() " id="ciudad"
           class="form-control form-select tamano input-peque py-0">
-          <option selected disabled value="">--selecciona--</option>
+          <option selected value="">--selecciona--</option>
           <option *ngFor="let c of listadoDeCiudades" value="{{c.Code}}">{{c.Description}}</option>
         </select>
       </div>
