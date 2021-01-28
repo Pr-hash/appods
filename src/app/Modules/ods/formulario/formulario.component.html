@@ -1,5 +1,5 @@
-<div class="container-fluid mt-4">
-  <div class="d-flex justify-content-between">
+<div class="container-fluid p-3">
+  <div class="d-flex justify-content-between p-1">
     <div>
       <h2 class="mensajes-negrita m-0">ORDEN DE SERVICIO</h2>
       <div class="bg-danger pt-1 m-0"></div>
@@ -7,7 +7,7 @@
     <h2>ODS <span class="mensajes-negrita">C0987876</span></h2>
   </div>
   <mat-accordion class="example-headers-align">
-    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+    <mat-expansion-panel class="m-1" [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
       <mat-expansion-panel-header class="bg-danger">
         <mat-panel-title class="text-blanco">
           Datos de identificación
@@ -27,7 +27,7 @@
     <!-- -------------------------------------------------------------------------------------- -->
     <!-- -------------------------------------------------------------------------------------- -->
 
-    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+    <mat-expansion-panel class="m-1" [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
       <mat-expansion-panel-header class="bg-secondary">
         <mat-panel-title class="text-blanco">
           Datos del equipo
@@ -48,7 +48,7 @@
     <!-- -------------------------------------------------------------------------------------- -->
     <!-- -------------------------------------------------------------------------------------- -->
 
-    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+    <mat-expansion-panel class="m-1" [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
       <mat-expansion-panel-header class="bg-secondary">
         <mat-panel-title class="text-blanco">
           Estado - Inspección física
@@ -68,7 +68,7 @@
     </mat-expansion-panel>
     <!-- -------------------------------------------------------------------------------------- -->
     <!-- -------------------------------------------------------------------------------------- -->
-    <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+    <mat-expansion-panel class="m-1" [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
       <mat-expansion-panel-header class="bg-secondary">
         <mat-panel-title class="text-blanco">
           Diagnóstico y/o reparación
@@ -88,7 +88,7 @@
     </mat-expansion-panel>
     <!-- -------------------------------------------------------------------------------------- -->
     <!-- -------------------------------------------------------------------------------------- -->
-    <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+    <mat-expansion-panel class="m-1" [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
       <mat-expansion-panel-header class="bg-secondary">
         <mat-panel-title class="text-blanco">
           Ingreso
@@ -109,7 +109,7 @@
     <!-- -------------------------------------------------------------------------------------- -->
     <!-- -------------------------------------------------------------------------------------- -->
 
-    <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
+    <mat-expansion-panel class="m-1" [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
       <mat-expansion-panel-header class="bg-secondary">
         <mat-panel-title class="text-blanco">
           Condiciones del servicio
@@ -130,7 +130,7 @@
     <!-- -------------------------------------------------------------------------------------- -->
     <!-- -------------------------------------------------------------------------------------- -->
 
-    <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(6)" hideToggle>
+    <mat-expansion-panel class="m-1" [expanded]="step === 6" (opened)="setStep(6)" hideToggle>
       <mat-expansion-panel-header class="bg-secondary">
         <mat-panel-title class="text-blanco">
           Aceptación de condiciones
