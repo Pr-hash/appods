@@ -39,8 +39,6 @@ export class DatosIdentificacionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getDeparatamentosandcites();
-    this.postDocumentos();
     this.validarSessionStorage();
   }
 
@@ -79,11 +77,11 @@ export class DatosIdentificacionComponent implements OnInit {
       } else {
         this.campos.formDatosIdentificacion.telefono.inhabilitar = false;
       }
-
       if (this.utilService.campoLleno(mensajeFalta)) {
         this.utilService.lanzarModal(false, 'No se encontraron las variables: ' + mensajeFalta + ' por favor recargue.')
         this.utilService.cambiarEstadoForDatosIdentificacion(true);
       }
+      this.getDeparatamentosandcites();
     }
     else {
       this.utilService.lanzarModal(false, 'No se encontraron variables de sesión. Por favor recargue.');
@@ -101,6 +99,7 @@ export class DatosIdentificacionComponent implements OnInit {
         if (this.respGeneralDepar.isValid) {
           this.listadoDepartamentos = JSON.parse(this.respGeneralDepar.message);
           console.log('Departamentos: ', this.listadoDepartamentos);
+          this.postDocumentos();
         } else {
           console.log('Error: ', this.respGeneralDepar.message);
           this.utilService.lanzarModal(false, this.respGeneralDepar.message + '. El listado de departamentos no llegó como se esperaba. Por favor recargue.');
