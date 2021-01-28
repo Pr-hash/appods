@@ -24,6 +24,9 @@
         <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
       </mat-action-row>
     </mat-expansion-panel>
+    <!-- -------------------------------------------------------------------------------------- -->
+    <!-- -------------------------------------------------------------------------------------- -->
+
     <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
       <mat-expansion-panel-header class="bg-secondary">
         <mat-panel-title class="text-blanco">
@@ -42,6 +45,9 @@
         <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
       </mat-action-row>
     </mat-expansion-panel>
+    <!-- -------------------------------------------------------------------------------------- -->
+    <!-- -------------------------------------------------------------------------------------- -->
+
     <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
       <mat-expansion-panel-header class="bg-secondary">
         <mat-panel-title class="text-blanco">
@@ -54,6 +60,88 @@
       </mat-expansion-panel-header>
       <div class="container mt-4">
         <app-estado-inspeccion-fisica></app-estado-inspeccion-fisica>
+      </div>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Anterior</button>
+        <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+    <!-- -------------------------------------------------------------------------------------- -->
+    <!-- -------------------------------------------------------------------------------------- -->
+    <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+      <mat-expansion-panel-header class="bg-secondary">
+        <mat-panel-title class="text-blanco">
+          Diagnóstico y/o reparación
+        </mat-panel-title>
+        <mat-panel-description>
+          <span></span>
+          <mat-icon class="text-blanco">add_circle</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="container mt-4">
+        <app-diagnostico-preparacion></app-diagnostico-preparacion>
+      </div>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Anterior</button>
+        <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+    <!-- -------------------------------------------------------------------------------------- -->
+    <!-- -------------------------------------------------------------------------------------- -->
+    <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+      <mat-expansion-panel-header class="bg-secondary">
+        <mat-panel-title class="text-blanco">
+          Ingreso
+        </mat-panel-title>
+        <mat-panel-description>
+          <span></span>
+          <mat-icon class="text-blanco">add_circle</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="container mt-4">
+        <app-ingreso></app-ingreso>
+      </div>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Anterior</button>
+        <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+    <!-- -------------------------------------------------------------------------------------- -->
+    <!-- -------------------------------------------------------------------------------------- -->
+
+    <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
+      <mat-expansion-panel-header class="bg-secondary">
+        <mat-panel-title class="text-blanco">
+          Condiciones del servicio
+        </mat-panel-title>
+        <mat-panel-description>
+          <span></span>
+          <mat-icon class="text-blanco">add_circle</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="container mt-4">
+        <app-condiciones-del-servicio></app-condiciones-del-servicio>
+      </div>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Anterior</button>
+        <button mat-button color="primary" (click)="nextStep()">Siguiente</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+    <!-- -------------------------------------------------------------------------------------- -->
+    <!-- -------------------------------------------------------------------------------------- -->
+
+    <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(6)" hideToggle>
+      <mat-expansion-panel-header class="bg-secondary">
+        <mat-panel-title class="text-blanco">
+          Aceptación de condiciones
+        </mat-panel-title>
+        <mat-panel-description>
+          <span></span>
+          <mat-icon class="text-blanco">add_circle</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="container mt-4">
+        <app-aceptacion-de-condiciones></app-aceptacion-de-condiciones>
       </div>
       <!-- <mat-form-field>
         <mat-label>Date</mat-label>

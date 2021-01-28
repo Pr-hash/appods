@@ -17,7 +17,7 @@
           [(ngModel)]="campos.formDatosIdentificacion.tipoDocumentoSeleccionado.valor" id="tipodedocumento"
           class="form-control form-select tamano input-peque py-0">
           <option selected disabled value=""> --selecciona-- </option>
-          <option *ngFor="let d of listadoDeDocumentos" value="{{d.Id}}">{{d.Description}}</option>
+          <option *ngFor="let d of listadoDeTiposDocumentos" value="{{d.Id}}">{{d.Description}}</option>
         </select>
       </div>
     </div>
@@ -46,8 +46,9 @@
       <div class="col-12 row mb-3">
         <label for="email" class="label-form">Email<span class="text-danger"> *</span></label>
         <input [disabled]="campos.formDatosIdentificacion.email.inhabilitar"
-          [(ngModel)]="campos.formDatosIdentificacion.email.valor" (change)="changeCorreos()" (keyup)="changeCorreos()"
-          id="email" type="email" class="form-control col-12 tamano input-peque">
+          (keypress)="utilService.caracteresCorreo($event)" [(ngModel)]="campos.formDatosIdentificacion.email.valor"
+          (change)="changeCorreos()" (keyup)="changeCorreos()" id="email" type="email"
+          class="form-control col-12 tamano input-peque">
         <h5 class="m-0 mt-1 mensajes-negrita text-{{campos.formDatosIdentificacion.email.color}}">
           {{campos.formDatosIdentificacion.email.mensaje}}
         </h5>
@@ -68,8 +69,8 @@
       <div class="col-12 row mb-3">
         <label for="ciudad" class="label-form">Ciudad<span class="text-danger"> *</span></label>
         <select [disabled]="campos.formDatosIdentificacion.ciudadSeleccionada.inhabilitar"
-          [(ngModel)]="campos.formDatosIdentificacion.ciudadSeleccionada.valor"
-           (change)="changeCiudad() " id="ciudad"class="form-control form-select tamano input-peque py-0">
+          [(ngModel)]="campos.formDatosIdentificacion.ciudadSeleccionada.valor" (change)="changeCiudad() " id="ciudad"
+          class="form-control form-select tamano input-peque py-0">
           <option selected disabled value="">--selecciona--</option>
           <option *ngFor="let c of listadoDeCiudades" value="{{c.Code}}">{{c.Description}}</option>
         </select>
@@ -90,7 +91,7 @@
     <div class="col-md-3">
       <div class="col-12 row mt-3">
         <button [disabled]="campos.formDatosIdentificacion.botonValidarDireccion.inhabilitar" (click)="putMgl()"
-          class="btn btn-success rounded-pill tamano input-peque py-0">Validar</button>
+          class="btn btn-success rounded-pill tamano input-peque py-0">{{campos.formDatosIdentificacion.botonValidarDireccion.valor}}</button>
       </div>
     </div>
   </div>

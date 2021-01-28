@@ -18,7 +18,7 @@ export class CamposService {
     departamentoSeleccionado: { valor: '', inhabilitar: false } as CampoGeneral,
     ciudadSeleccionada: { valor: '', inhabilitar: true } as CampoGeneral,
     direccion: { valor: '', inhabilitar: true, estado: false } as CampoGeneral,
-    botonValidarDireccion: { inhabilitar: true } as CampoGeneral,
+    botonValidarDireccion: { inhabilitar: true, valor: 'Validar' } as CampoGeneral,
     objetoDepartamento: {} as Departments,
     objetoCiudad: {} as Cities,
   }

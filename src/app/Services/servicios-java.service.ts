@@ -38,17 +38,6 @@ export class ServiciosJavaService {
     return this.httpGenerico.get(URL, this.infoServicio);
   }
 
-  postDocumentos() {
-    this.infoServicio = {
-      descripcion: 'consultar parámetros',
-      detallerError: 'No se logró traer los parámetros'
-    };
-    const URL = 'http://100.126.19.9:8300/CRMUtilServicesv1/api/Parameter?strGroup=45_1';
-    return this.httpGenerico.post(URL, null, this.infoServicio, false);
-  }
-
-
-
   putMGL(body: RequestMgl) {
     this.infoServicio = {
       descripcion: 'estandarizar dirección',

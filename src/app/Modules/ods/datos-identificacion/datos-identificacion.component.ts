@@ -9,8 +9,6 @@ import { RespGeneral } from 'src/app/Models/resp-general';
 import { CamposService } from 'src/app/Services/campos.service';
 import { ServiciosJavaService } from 'src/app/Services/servicios-java.service';
 import { ResponseMgl } from 'src/app/Models/response-mgl';
-import { Direction } from 'readline';
-
 
 @Component({
   selector: 'app-datos-identificacion',
@@ -23,7 +21,7 @@ export class DatosIdentificacionComponent implements OnInit {
   private respGeneralMgl: ResponseMgl;
   public listadoDepartamentos: Departments[];
   public listadoDeCiudades: Cities[];
-  public listadoDeDocumentos: Documentos[];
+  public listadoDeTiposDocumentos: Documentos[];
 
   constructor(
     private servicios: ServiciosJavaService,
@@ -59,25 +57,25 @@ export class DatosIdentificacionComponent implements OnInit {
 
       if (this.utilService.campoLleno(nombres)) {
         this.campos.formDatosIdentificacion.nombres.valor = nombres;
-        this.campos.formDatosIdentificacion.nombres.estado = false;
+        this.campos.formDatosIdentificacion.nombres.estado = true;
       } else {
         mensajeFalta += ' nombres,';
       }
       if (this.utilService.campoLleno(noDocumento)) {
         this.campos.formDatosIdentificacion.noDocumento.valor = noDocumento;
-        this.campos.formDatosIdentificacion.noDocumento.estado = false;
+        this.campos.formDatosIdentificacion.noDocumento.estado = true;
       } else {
         mensajeFalta += ' número de documento,';
       }
       if (this.utilService.campoLleno(tipoDocumento)) {
         this.campos.formDatosIdentificacion.tipoDocumentoSeleccionado.valor = tipoDocumento;
-        this.campos.formDatosIdentificacion.tipoDocumentoSeleccionado.estado = false;
+        this.campos.formDatosIdentificacion.tipoDocumentoSeleccionado.estado = true;
       } else {
         mensajeFalta += ' tipo de documento,';
       }
       if (this.utilService.campoLleno(min)) {
         this.campos.formDatosIdentificacion.telefono.valor = min;
-        this.campos.formDatosIdentificacion.telefono.estado = false;
+        this.campos.formDatosIdentificacion.telefono.estado = true;
       } else {
         this.campos.formDatosIdentificacion.telefono.inhabilitar = false;
       }
@@ -117,28 +115,11 @@ export class DatosIdentificacionComponent implements OnInit {
   }
 
   postDocumentos() {
-    this.servicios.postDocumentos().subscribe(
-      data => {
-        console.log('Resp parámetros: ', data);
-        this.respGeneralDocu = data as Generalresp[];
-        // console.log('Datos tipos de documento: ', this.respGeneralDocu);
-        const tiposDocumento = this.respGeneralDocu.find(p => p.NAME_PARAMETER.indexOf('DOCUMENT_TYPES') != -1)
-        // console.log('Los tipos de documento son:', tiposDocumento);
-        if (tiposDocumento) {
-          this.listadoDeDocumentos = JSON.parse(tiposDocumento.VALUE_PARAMETER);
-          console.log('Tipos de Documento: ', this.listadoDeDocumentos);
-        } else {
-          console.log('Error: ', tiposDocumento);
-          this.utilService.lanzarModal(false, 'El listado de tipos de documento no llegó como se esperaba. Por favor recargue.');
-          this.utilService.cambiarEstadoForDatosIdentificacion(true);
-        }
-      }, error => {
-        console.log('Error tipos de documento: ', error);
-        this.utilService.lanzarModal(false, 'Ocurrió un error al listar los tipos de documento. Por favor recargue.');
-        this.utilService.cambiarEstadoForDatosIdentificacion(true);
-      }
-    )
-
+    const tiposDocumento = this.campos.paramTiposDocumentos as Generalresp;
+    if (tiposDocumento) {
+      this.listadoDeTiposDocumentos = JSON.parse(tiposDocumento.VALUE_PARAMETER);
+      console.log('Tipos de Documento: ', this.listadoDeTiposDocumentos);
+    }
   }
 
   changeDepartments() {
@@ -154,10 +135,12 @@ export class DatosIdentificacionComponent implements OnInit {
       console.log('No se encontraron ciudades.');
       this.utilService.lanzarModal(false, 'No se encontraron ciudades para el departamento seleccionado. Por favor, seleccione otro departamento.');
     }
+    this.changeCiudad();
   }
 
 
   putMgl() {
+    this.campos.formDatosIdentificacion.botonValidarDireccion.valor = 'Validando...'
     console.log('Estandarizando dirección.');
     const body = {
       user: "hectorg",
@@ -178,6 +161,7 @@ export class DatosIdentificacionComponent implements OnInit {
         console.log('Resp mgl: ', data);
         this.respGeneralMgl = data as ResponseMgl;
         if (this.respGeneralMgl.messageType == 'I') {
+          this.campos.formDatosIdentificacion.botonValidarDireccion.valor = 'Validada'
           // BIEN
           this.campos.formDatosIdentificacion.direccion.valor = this.respGeneralMgl.listAddresses[0].splitAddres.direccionTexto;
           this.campos.formDatosIdentificacion.direccion.estado = true;
@@ -185,11 +169,13 @@ export class DatosIdentificacionComponent implements OnInit {
           this.campos.formDatosIdentificacion.direccion.color = 'success';
           this.campos.formDatosIdentificacion.botonValidarDireccion.inhabilitar = true;
         } else {
+          this.campos.formDatosIdentificacion.botonValidarDireccion.valor = 'Validar'
           console.log('No se estandarizó la dirección.');
           this.campos.formDatosIdentificacion.direccion.mensaje = this.respGeneralMgl.message ? this.respGeneralMgl.message : 'No se logró estandarizar la dirección, intente de nuevo.';
           this.campos.formDatosIdentificacion.direccion.color = 'danger';
         }
       }, error => {
+        this.campos.formDatosIdentificacion.botonValidarDireccion.valor = 'Validar'
         console.log('Error mgl: ', error);
       }
     );
@@ -205,6 +191,7 @@ export class DatosIdentificacionComponent implements OnInit {
   }
 
   async changeDireccion() {
+    this.campos.formDatosIdentificacion.botonValidarDireccion.valor = 'Validar';
     await this.utilService.validarDireccion(this.campos.formDatosIdentificacion.direccion);
     this.habilitarButton();
   }
@@ -225,10 +212,15 @@ export class DatosIdentificacionComponent implements OnInit {
     if (ciudad) {
       this.campos.formDatosIdentificacion.objetoCiudad = ciudad;
       this.campos.formDatosIdentificacion.direccion.inhabilitar = false;
-
+      this.campos.formDatosIdentificacion.direccion.estado = false;
+      if (this.utilService.campoLleno(this.campos.formDatosIdentificacion.direccion.valor)) {
+        this.campos.formDatosIdentificacion.direccion.mensaje = 'Dirección válida. Por favor validar';
+        this.campos.formDatosIdentificacion.direccion.color = 'secondary';
+      }
     } else {
+      this.campos.formDatosIdentificacion.direccion.inhabilitar = true;
       console.log('No se encontraron ciudades.');
-      this.utilService.lanzarModal(false, 'No se encontraron ciudades para el departamento seleccionado. Por favor, seleccione otro departamento.');
+      // this.utilService.lanzarModal(false, 'No se encontraron ciudades para el departamento seleccionado. Por favor, seleccione otro departamento.');
     }
   }
 

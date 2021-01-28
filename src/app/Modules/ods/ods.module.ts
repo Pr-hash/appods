@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
+import { DiagnosticoPreparacionComponent } from './diagnostico-preparacion/diagnostico-preparacion.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AngularMaterialModule } from 'src/app/angular-material/angular-material
     DatosIdentificacionComponent,
     EstadoInspeccionFisicaComponent,
     FormularioComponent,
-    IngresoComponent
+    IngresoComponent,
+    DiagnosticoPreparacionComponent
   ],
   imports: [
     CommonModule,

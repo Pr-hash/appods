@@ -1,2 +1,10 @@
 <block-ui></block-ui>
-<app-formulario></app-formulario>
+<div *ngIf="begin == true">
+  <app-formulario></app-formulario>
+</div>
+<div *ngIf="begin == false">
+  <app-not-found></app-not-found>
+</div>
+<div *ngIf="begin == undefined">
+  <app-waiting></app-waiting>
+</div>

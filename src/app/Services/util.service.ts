@@ -11,7 +11,7 @@ export class UtilService {
 
   @BlockUI() blockUI: NgBlockUI;
   alerta = {} as Alerta;
-  regexpEmail = RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}$');
+  regexpEmail = RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,4}$');
 
   constructor(
     public dialog: MatDialog,
@@ -81,6 +81,20 @@ export class UtilService {
     }
   }
 
+  caracteresCorreo(event) {
+    if ((event.charCode >= 65 && event.charCode <= 90) ||
+      (event.charCode >= 97 && event.charCode <= 122) ||
+      (event.charCode >= 48 && event.charCode <= 57) ||
+      (event.charCode === 64) ||
+      (event.charCode === 46) ||
+      (event.charCode === 95) ||
+      (event.charCode == 45)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   validarDireccion(direccion: CampoGeneral) {
     if (!this.campoLleno(direccion.valor)) {
       direccion.mensaje = 'Digite un dirección';
@@ -91,7 +105,7 @@ export class UtilService {
       direccion.color = 'danger';
       direccion.estado = false;
     } else {
-      direccion.mensaje = 'Dirección válida : Por Favor Validar';
+      direccion.mensaje = 'Dirección válida. Por favor validar';
       direccion.color = 'secondary';
     }
   }

@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     public campos: CamposService,
   ) {
     const errorM = 'No se logró consultar los parámetros necesarios';
-    this.servicios.getParameter('45_1', errorM).subscribe(
+    this.servicios.getParameter('45_0', errorM).subscribe(
       data => {
         console.log('Parámetros: ', data);
         if (util.campoLleno(data) && data.length > 0) {
@@ -39,6 +39,11 @@ export class AppComponent implements OnInit {
         util.lanzarModal(false, errorM + '.');
       }
     );
+    setTimeout(() => {
+      if (!this.begin) {
+        this.begin = false;
+      }
+    }, 7000);
   }
 
   ngOnInit(): void {
