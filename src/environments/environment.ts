@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  urlParam: 'http://100.126.19.9:8300/CRMUtilServicesv1/api/Parameter?strGroup={2}'
 };
 
 /*

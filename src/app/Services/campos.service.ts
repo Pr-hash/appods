@@ -17,7 +17,7 @@ export class CamposService {
     email: { valor: '', inhabilitar: false } as CampoGeneral,
     departamentoSeleccionado: { valor: '', inhabilitar: false } as CampoGeneral,
     ciudadSeleccionada: { valor: '', inhabilitar: true } as CampoGeneral,
-    direccion: { valor: '', inhabilitar: false, estado: false } as CampoGeneral,
+    direccion: { valor: '', inhabilitar: true, estado: false } as CampoGeneral,
     botonValidarDireccion: { inhabilitar: true } as CampoGeneral,
     objetoDepartamento: {} as Departments,
     objetoCiudad: {} as Cities,
@@ -26,6 +26,8 @@ export class CamposService {
   formInformacionEquipo = {
 
   }
+
+  paramTiposDocumentos: any
 
   constructor() {
 

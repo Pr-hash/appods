@@ -134,6 +134,12 @@ export class UtilService {
     this.campos.formDatosIdentificacion.ciudadSeleccionada.inhabilitar = estado;
     this.campos.formDatosIdentificacion.direccion.inhabilitar = estado;
   }
+
+  ajustarURL(str: string, ...args: string[]) {
+    return str.replace(/{(\d+)}/g, (match, index) => args[index] || '');
+  }
+
+
 }
 
 interface Alerta {
