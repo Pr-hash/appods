@@ -10,6 +10,8 @@ export class FormularioComponent implements OnInit {
 
   step = 0;
 
+  formularioSeleccionado: number = 0;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -18,6 +20,7 @@ export class FormularioComponent implements OnInit {
 
   setStep(index: number) {
     this.step = index;
+    this.formularioSeleccionado = index;
   }
 
   nextStep() {

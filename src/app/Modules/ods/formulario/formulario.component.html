@@ -8,7 +8,8 @@
   </div>
   <mat-accordion class="example-headers-align">
     <mat-expansion-panel class="m-1" [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
-      <mat-expansion-panel-header class="bg-danger">
+      <mat-expansion-panel-header
+        [ngClass]="{'bg-danger': formularioSeleccionado == 0 , 'bg-secondary': formularioSeleccionado != 0}">
         <mat-panel-title class="text-blanco">
           Datos de identificación
         </mat-panel-title>
@@ -28,7 +29,8 @@
     <!-- -------------------------------------------------------------------------------------- -->
 
     <mat-expansion-panel class="m-1" [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
-      <mat-expansion-panel-header class="bg-secondary">
+      <mat-expansion-panel-header
+        [ngClass]="{'bg-danger': formularioSeleccionado == 1 , 'bg-secondary': formularioSeleccionado != 1}">
         <mat-panel-title class="text-blanco">
           Datos del equipo
         </mat-panel-title>
@@ -49,7 +51,8 @@
     <!-- -------------------------------------------------------------------------------------- -->
 
     <mat-expansion-panel class="m-1" [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
-      <mat-expansion-panel-header class="bg-secondary">
+      <mat-expansion-panel-header
+        [ngClass]="{'bg-danger': formularioSeleccionado == 2 , 'bg-secondary': formularioSeleccionado != 2}">
         <mat-panel-title class="text-blanco">
           Estado - Inspección física
         </mat-panel-title>
@@ -69,7 +72,8 @@
     <!-- -------------------------------------------------------------------------------------- -->
     <!-- -------------------------------------------------------------------------------------- -->
     <mat-expansion-panel class="m-1" [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
-      <mat-expansion-panel-header class="bg-secondary">
+      <mat-expansion-panel-header
+        [ngClass]="{'bg-danger': formularioSeleccionado == 3 , 'bg-secondary': formularioSeleccionado != 3}">
         <mat-panel-title class="text-blanco">
           Diagnóstico y/o reparación
         </mat-panel-title>
@@ -89,7 +93,8 @@
     <!-- -------------------------------------------------------------------------------------- -->
     <!-- -------------------------------------------------------------------------------------- -->
     <mat-expansion-panel class="m-1" [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
-      <mat-expansion-panel-header class="bg-secondary">
+      <mat-expansion-panel-header
+        [ngClass]="{'bg-danger': formularioSeleccionado == 4 , 'bg-secondary': formularioSeleccionado != 4}">
         <mat-panel-title class="text-blanco">
           Ingreso
         </mat-panel-title>
@@ -110,7 +115,8 @@
     <!-- -------------------------------------------------------------------------------------- -->
 
     <mat-expansion-panel class="m-1" [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
-      <mat-expansion-panel-header class="bg-secondary">
+      <mat-expansion-panel-header
+        [ngClass]="{'bg-danger': formularioSeleccionado == 5 , 'bg-secondary': formularioSeleccionado != 5}">
         <mat-panel-title class="text-blanco">
           Condiciones del servicio
         </mat-panel-title>
@@ -131,7 +137,8 @@
     <!-- -------------------------------------------------------------------------------------- -->
 
     <mat-expansion-panel class="m-1" [expanded]="step === 6" (opened)="setStep(6)" hideToggle>
-      <mat-expansion-panel-header class="bg-secondary">
+      <mat-expansion-panel-header
+        [ngClass]="{'bg-danger': formularioSeleccionado == 6 , 'bg-secondary': formularioSeleccionado != 6}">
         <mat-panel-title class="text-blanco">
           Aceptación de condiciones
         </mat-panel-title>
