@@ -68,6 +68,21 @@ export class UtilService {
       telefono.estado = true;
     }
   }
+  validarColor(color: CampoGeneral) {
+    if (color.valor == '') {
+      color.mensaje = 'Digite un color';
+      color.color = 'danger';
+      color.estado = false;
+    } else if (color.valor.length >= 50) {
+      color.mensaje = 'Un colo no debe de tener mas de 50 caracteres ';
+      color.color = 'danger';
+      color.estado = false;
+    } else {
+     color.mensaje = 'Color válido';
+     color.color = 'success';
+     color.estado = true;
+    }
+  }
 
   caracteresAlfanumerico(event) {
     if ((event.charCode >= 65 && event.charCode <= 90) ||
@@ -147,7 +162,23 @@ export class UtilService {
     this.campos.formDatosIdentificacion.departamentoSeleccionado.inhabilitar = estado;
     this.campos.formDatosIdentificacion.ciudadSeleccionada.inhabilitar = estado;
     this.campos.formDatosIdentificacion.direccion.inhabilitar = estado;
+    this.campos.formInformacionEquipo.centrodeatencion.inhabilitar = estado;
+    this.campos.formInformacionEquipo.color.inhabilitar = estado;
+    this.campos.formInformacionEquipo.distribudorcentroingreso.inhabilitar = estado;
+    this.campos.formInformacionEquipo.doa.inhabilitar = estado;
+    this.campos.formInformacionEquipo.fechadecompra.inhabilitar = estado;
+    this.campos.formInformacionEquipo.fechadeingreso.inhabilitar = estado;
+    this.campos.formInformacionEquipo.horadeingreso.inhabilitar = estado;
+    this.campos.formInformacionEquipo.imei.inhabilitar = estado;
+    this.campos.formInformacionEquipo.marca.inhabilitar = estado;
+    this.campos.formInformacionEquipo.min.inhabilitar = estado;
+    this.campos.formInformacionEquipo.modelo.inhabilitar = estado;
+    this.campos.formInformacionEquipo.periododegarantia.inhabilitar = estado;
+    this.campos.formInformacionEquipo.servicio.inhabilitar = estado;
+    this.campos.formInformacionEquipo.sn.inhabilitar = estado;
+    this.campos.formInformacionEquipo.tipodeprestamo.inhabilitar = estado;
   }
+
 
   ajustarURL(str: string, ...args: string[]) {
     return str.replace(/{(\d+)}/g, (match, index) => args[index] || '');

@@ -1,1 +1,153 @@
-<p>datos-del-equipo works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="col-12 row mb-3">
+        <label for="marca" class="label-form">Marca<span class="text-danger"> *</span>
+        </label>
+        <input id="marca" type="text" maxlength="50" class="form-control col-12 tamano input-peque">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-12 row mb-3">
+        <label for="modelo" class="label-form">Modelo<span class="text-danger"> *</span>
+        </label>
+        <input id="modelo" type="text" maxlength="50" class="form-control col-12 tamano input-peque">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-12 row mb-3">
+        <label for="min" class="label-form">MIN<span class="text-danger"> *</span>
+        </label>
+        <input [disabled]="campos.formInformacionEquipo.min.inhabilitar"
+          [(ngModel)]="campos.formInformacionEquipo.min.valor" id="min" type="text"
+          class="form-control col-12 tamano input-peque">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-12 row mb-3">
+        <label for="imei" class="label-form">IMEI<span class="text-danger"> *</span>
+        </label>
+        <input [disabled]="campos.formInformacionEquipo.imei.inhabilitar"
+          [(ngModel)]="campos.formInformacionEquipo.imei.valor" id="imei" type="text"
+          class="form-control col-12 tamano input-peque">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-12 row mb-3">
+        <label for="color" class="label-form">Color<span class="text-danger"> *</span>
+        </label>
+        <input id="color" type="text" maxlength="50" class="form-control col-12 tamano input-peque">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-12 row mb-3">
+        <label for="sn" class="label-form">S/N<span class="text-danger"> *</span>
+        </label>
+        <input [disabled]="campos.formInformacionEquipo.sn.inhabilitar"
+          [(ngModel)]="campos.formInformacionEquipo.sn.valor" (change)="changeColor()" (keyup)="changeColor()" id="sn"
+          type="text" class="form-control col-12 tamano input-peque">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-12 row mb-3">
+        <label for="periododegarantia" class="label-form">Periodo de garantia<span class="text-danger"> *</span>
+        </label>
+        <select id="periododegarantia" type="text" class="form-control col-12 tamano input-peque  py-0">
+          <option selected value=""> 15 dias </option>
+          <option selected value=""> Un mes </option>
+          <option selected value=""> Dos meses </option>
+          <option selected value=""> Tres meses </option>
+          <option selected value=""> Seis meses </option>
+          <option selected value=""> Un año </option>
+          <option selected value=""> Dieciocho meses </option>
+          <option selected value=""> Dos años </option>
+          <option selected disabled value=""> --selecciona-- </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-12 row mb-3">
+        <label for="servicio" class="label-form">Servicio<span class="text-danger"> *</span>
+        </label>
+        <input id="servicio" type="text" maxlength="100" class="form-control col-12 tamano input-peque ">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-12 row mb-3">
+        <label for="doa" class="label-form">DOA<span class="text-danger"> *</span> </label>
+        <select id="doa" type="text" class="form-control col-12 tamano input-peque py-0">
+          <option selected value="">Si</option>
+          <option selected value="">No</option>
+          <option selected disabled value=""> --selecciona-- </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-12 row mb-3">
+        <label for="tipodeprestamo" class="label-form">Tipo de prestamo<span class="text-danger"> *</span>
+        </label>
+        <input id="tipodeprestamo" type="text" maxlength="100" class="form-control col-12 tamano input-peque">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-12 row mb-3">
+        <label for="fechadeingreso" class="label-form">Fecha de ingreso<span class="text-danger"> *</span>
+        </label>
+        <input id="fechadeingreso" type="date"  class="form-control col-12 tamano input-peque">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-12 row mb-3">
+        <label for="horadeingreso" class="label-form">Hora de ingreso<span class="text-danger"> *</span>
+        </label>
+        <input id="horadeingreso" type="time" class="form-control col-12 tamano input-peque">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-12 row mb-3">
+        <label for="fechadecompra" class="label-form">Fecha de compra<span class="text-danger"> *</span>
+        </label>
+        <input id="fechadecompra" type="date"  class="form-control col-12 tamano input-peque">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-12 row mb-3">
+        <label for="centrodeatencion" class="label-form">Centro de atencion<span class="text-danger"> *</span>
+        </label>
+        <input id="centrodeatencion" type="text" maxlength="100" class="form-control col-12 tamano input-peque">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-12 row mb-3">
+        <label for="distrubidorcentroingreso" class="label-form">Distrubidor centro ingreso<span class="text-danger">
+            *</span>
+        </label>
+        <input id="distrubidorcentroingreso" type="text" maxlength="100" class="form-control col-12 tamano input-peque">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-12 row mb-3">
+        <label for="prestamodequipo" class="label-form">Prestamo de equipo<span class="text-danger">
+            *</span>
+        </label>
+        <select id="prestamodequipo" type="text" class="form-control col-12 tamano input-peque py-0">
+          <option selected value="">Si</option>
+          <option selected value="">No</option>
+          <option selected disabled value=""> --selecciona-- </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="col-12 row mb-3">
+        <label for="suspensiondelinea" class="label-form">Suspensión de linea<span class="text-danger">
+            *</span>
+        </label>
+        <select id="suspensiondelinea" type="text" class="form-control col-12 tamano input-peque py-0">
+          <option selected value="">Si</option>
+          <option selected value="">No</option>
+          <option selected disabled value=""> --selecciona-- </option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>

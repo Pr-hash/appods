@@ -38,6 +38,14 @@ export class ServiciosJavaService {
     const URL = this.util.ajustarURL(JSON.parse(this.campos.paramWsRest.VALUE_PARAMETER).WsImeiTools, 'Cities_Departaments', '', 'Get', this.header());
     return this.httpGenerico.get(URL, this.infoServicio);
   }
+  // getMarca(){
+  //   this.infoServicio = {
+  //     descripcion: 'consultar marca',
+  //     detallerError: 'No se logró traer las marcas'
+  //   }
+  //   const URL = this.util.ajustarURL(JSON.parse(this.campos.paramWsRest.VALUE_PARAMETER).WsImeiTools, 'Marca', '', 'Get', this.header());
+  //   return this.httpGenerico.get("http://100.126.19.74:8091/DEVQA/WsImeiComcel/api/AdminImei/ResourcesDomainApp_GET?getOperation=ConsultaDeviceManager&message={"min" : ""}");
+  // }
 
   putMGL(body: RequestMgl) {
     this.infoServicio = {
